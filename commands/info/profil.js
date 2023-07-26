@@ -13,7 +13,7 @@ module.exports = {
         .setRequired(false)),
     async execute(interaction) {
         let member = interaction.member;
-        if (interaction.options.getUser('user')) member = interaction.options.getUser('user');
+        if (interaction.options.getUser('user')) member = interaction.guild.members.cache.get(interaction.options.getUser('user').id);
         const mmember = memberdata.find(m => m.id === member.id);
         if (!mmember) return await interaction.followUp(`Aby wyświetlić profil tej osoby musi ona coś napisać!`);
 

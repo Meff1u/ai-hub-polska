@@ -17,7 +17,7 @@ module.exports = {
 
         try {
             const track = await Spotify.getTrack(url);
-            if (track.toString().includes('TypeError')) return await interaction.editReply('Błąd, upewnij się, że dałeś link do __utworu__, nie albumu lub playlisty.');
+            if (track.toString().includes('Error')) return await interaction.editReply('Błąd, upewnij się, że dałeś link do __utworu spotify__, nie albumu lub playlisty, czy innej platformy.');
             const title = `${track.artist} - ${track.title}`;
             await interaction.followUp(`Pobieranie **${title}**...`);
             await Spotify.downloadTrack(track, './tracks').then(async r => {
@@ -31,7 +31,6 @@ module.exports = {
                     });
                 }
             });
-
         } catch (err) {
             console.log(err);
             return await interaction.followUp({ content: 'Link musi być do __utworu.__, nie albumu lub playlisty.\n(jeśli jednak dałeś link do utworu, oznacza to, że to jakiś poważny błąd i zgłoś to administratorowi, dzięki)' });
