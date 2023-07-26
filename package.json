@@ -1,6 +1,6 @@
 {
   "name": "ai-hub-polska",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Bot dla spolecznosci AI Hub Polska",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Mefuuu/ai-hub-polska#readme",
   "dependencies": {
+    "canvacord": "^5.4.10",
     "discord.js": "^14.11.0"
   }
 }
