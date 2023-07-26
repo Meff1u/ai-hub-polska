@@ -21,6 +21,6 @@ module.exports = {
         setInterval(() => {
             state = (state + 1) % presences.length;
             client.user.setPresence({ activities: [presences[state]], status: 'dnd' });
-        }, 5000);
+        }, 15000);
     }
 }
