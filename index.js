@@ -21,6 +21,7 @@ const client = new Client({ intents: [
 
 client.commands = new Collection();
 client.lvlcooldowns = new Collection();
+client.cmdcooldowns = new Collection();
 
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);

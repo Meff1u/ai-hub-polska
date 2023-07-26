@@ -1,14 +1,6 @@
-const { SlashCommandBuilder } = require('discord.js');
-const Spotify = require('spotifydl-core').default;
-const { spotify } = require('../../config.json');
+const { SlashCommandBuilder, AttachmentBuilder } = require('discord.js');
+const Spotify = require('spottydl');
 const fs = require('node:fs');
-
-const credentials = {
-    clientId: spotify.ID,
-    clientSecret: spotify.secret
-}
-
-const s = new Spotify(credentials);
 
 module.exports = {
     ephemeral: false,
@@ -24,15 +16,25 @@ module.exports = {
         const url = interaction.options.getString('spotify_url');
 
         try {
-            const track = await s.getTrack(url);
-            const title = `${track.artists.map(a => a).join(', ')} - ${track.name}`;
+            const track = await Spotify.getTrack(url);
+            if (track.toString().includes('TypeError')) return await interaction.editReply('Błąd, upewnij się, że dałeś link do __utworu__, nie albumu lub playlisty.');
+            const title = `${track.artist} - ${track.title}`;
             await interaction.followUp(`Pobieranie **${title}**...`);
-            const song = await s.downloadTrack(url, `${title}.mp3`);
-            fs.writeFileSync(`${title}.mp3`, song);
-            console.log('downloaded');
+            await Spotify.downloadTrack(track, './tracks').then(async r => {
+                if (r[0].status === 'Success') {
+                    const file = new AttachmentBuilder(r[0].filename, { name: `${title}.mp3` });
+                    await interaction.editReply({ content: 'Done.', files: [file] });
+                    fs.unlinkSync(r[0].filename, (err) => {
+                        if (err) {
+                            throw err;
+                        }
+                    });
+                }
+            });
 
         } catch (err) {
-            return await interaction.followUp({ content: 'Link musi być do __utworu.__, nie albumu lub playlisty.' });
+            console.log(err);
+            return await interaction.followUp({ content: 'Link musi być do __utworu.__, nie albumu lub playlisty.\n(jeśli jednak dałeś link do utworu, oznacza to, że to jakiś poważny błąd i zgłoś to administratorowi, dzięki)' });
         }
     }
 }

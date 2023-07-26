@@ -1,6 +1,6 @@
 {
   "name": "ai-hub-polska",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Bot dla spolecznosci AI Hub Polska",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,6 @@
   "dependencies": {
     "canvacord": "^5.4.10",
     "discord.js": "^14.11.0",
-    "spotifydl-core": "^0.2.0"
+    "spottydl": "^0.2.2"
   }
 }
