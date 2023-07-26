@@ -12,10 +12,10 @@ module.exports = {
         });
         const channel = await client.channels.fetch('1124570199018967075');
         const threads = await channel.threads.fetch();
-        const members = client.guilds.cache.get(serverID).members.cache.size;
+        const members = await client.guilds.cache.get(serverID).members.fetch();
         let state = 0;
         const presences = [
-            { name: `${members} members <3`, type: ActivityType.Watching },
+            { name: `${members.size} members <3`, type: ActivityType.Watching },
             { name: `${threads.threads.size} models!`, type: ActivityType.Watching }
         ]
         setInterval(() => {
