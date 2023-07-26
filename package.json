@@ -1,0 +1,27 @@
+{
+  "name": "ai-hub-polska",
+  "version": "1.0.0",
+  "description": "Bot dla spolecznosci AI Hub Polska",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mefuuu/ai-hub-polska.git"
+  },
+  "keywords": [
+    "ai",
+    "discord",
+    "bot"
+  ],
+  "author": "Meffiu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mefuuu/ai-hub-polska/issues"
+  },
+  "homepage": "https://github.com/Mefuuu/ai-hub-polska#readme",
+  "dependencies": {
+    "discord.js": "^14.11.0"
+  }
+}
