@@ -19,12 +19,12 @@ module.exports = {
                 mmember.level.lvl += 1;
                 message.client.channels.cache.get('1124566636020633662').send(`<a:peepoJAMMER:1133830488788840478> ${message.member} **LEVEL UP!!** (${mmember.level.lvl}) <a:peepoJAMMER:1133830488788840478>`);
             }
-            fs.writeFileSync(`./memberdata.json`, JSON.stringify(memberdata));
 
             const now = Date.now();
             lvlcooldowns.set(message.member.id, now);
             setTimeout(() => lvlcooldowns.delete(message.member.id), 60000);
         }
+        fs.writeFileSync(`./memberdata.json`, JSON.stringify(memberdata));
 
         if (message.channelId === '1126081259546886174') {
             message.react('⬆️');
