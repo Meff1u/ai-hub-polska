@@ -24,6 +24,13 @@ module.exports = {
             return false;
         });
 
+        let leaderboard = [];
+        memberdata.forEach(e => {
+            leaderboard.push({ id: e.id, xp: e.level.xp + (e.level.lvl * 150) });
+        });
+        leaderboard.sort((a, b) => b.xp - a.xp);
+        const rankplace = leaderboard.findIndex(e => e.id === member.user.id) + 1;
+
         const rank = new canvacord.Rank()
         .setAvatar(member.user.displayAvatarURL())
         .setCurrentXP(mmember.level.xp)
@@ -31,7 +38,8 @@ module.exports = {
         .setLevel(mmember.level.lvl)
         .setStatus(member.user.presence?.status || 'offline')
         .setProgressBar(member.roles.highest?.hexColor, 'COLOR')
-        .setUsername(member.user.username);
+        .setUsername(member.user.username)
+        .setRank(rankplace);
 
         rank.build().then(async data => {
             const att = new AttachmentBuilder(data, { name: `${member.user.username}.png`});
