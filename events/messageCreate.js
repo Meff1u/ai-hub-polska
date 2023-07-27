@@ -6,11 +6,12 @@ module.exports = {
     name: Events.MessageCreate,
     async execute(message) {
         if (message.author.bot) return;
+        if (!memberdata.find(m => m.id === message.member.id)) memberdata.push({ id: message.member.id, level: { xp: 0, lvl: 1 } });
+        const mmember = memberdata.find(m => m.id === message.member.id);
+        mmember.messages ? mmember.messages += 1 : mmember.messages = 1;
 
         const { lvlcooldowns } = message.client;
         if (!lvlcooldowns.has(message.member.id)) {
-            if (!memberdata.find(m => m.id === message.member.id)) memberdata.push({ id: message.member.id, level: { xp: 0, lvl: 1 } });
-            const mmember = memberdata.find(m => m.id === message.member.id);
             const gainedxp = getRandomXp(5, 15);
             mmember.level.xp += gainedxp;
             if (mmember.level.xp >= mmember.level.lvl * 150) {
