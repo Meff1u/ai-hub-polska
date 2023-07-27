@@ -42,7 +42,7 @@ module.exports = {
                 .setColor(member.roles.highest?.hexColor)
                 .addFields(
                     { name: 'Informacje:', value: `• ID: **${member.user.id}**\n• Utworzył(a) konto **<t:${Math.round(member.user.createdTimestamp / 1000)}:R>**\n• Dołączył(a) na serwer **<t:${Math.round(member.joinedTimestamp / 1000)}:R>**`, inline: true },
-                    { name: 'Statystyki:', value: `• Wiadomości: **${mmember.messages}**\n• Zapostowane modele: **${postedmodels.size}**`, inline: true }
+                    { name: 'Statystyki:', value: `• Wiadomości: **${mmember.messages || '0'}**\n• Zapostowane modele: **${postedmodels.size}**`, inline: true }
                 )
                 .setImage(m.attachments.first().url);
                 await interaction.followUp({ embeds: [e] });
