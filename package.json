@@ -1,6 +1,6 @@
 {
   "name": "ai-hub-polska",
-  "version": "1.0.9b",
+  "version": "1.0.10",
   "description": "Bot dla spolecznosci AI Hub Polska",
   "main": "index.js",
   "scripts": {
