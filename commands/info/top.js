@@ -21,8 +21,16 @@ module.exports = {
 
         const executerplace = leaderboard.findIndex(e => e.id === member.user.id) + 1;
 
+        let pageid = 0;
         slicedleaderboard.map((page) => {
-            console.log(page);
+            let desc = '';
+            for (let i = 0; i < page.length; i++) {
+                let mem = interaction.guild.members.cache.get(page[i].id);
+                let memd = memberdata.find(m => m.id === page[i].id);
+                desc += `\`${i + 1 + (pageid * 10)}.\` **${mem.user.username}** - ${memd.level.lvl} poziom (${memd.level.xp} XP)\n`;
+            }
+            console.log(desc);
+            pageid += 1;
         });
 
         let desc = '';
