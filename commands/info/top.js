@@ -17,9 +17,13 @@ module.exports = {
             }
         });
         await leaderboard.sort((a, b) => b.xp - a.xp);
-        console.log(sliceArray(leaderboard, 10));
+        const slicedleaderboard = sliceArray(leaderboard, 10);
 
         const executerplace = leaderboard.findIndex(e => e.id === member.user.id) + 1;
+
+        slicedleaderboard.map((page) => {
+            console.log(page);
+        });
 
         let desc = '';
         for (let i = 0; i < leaderboard.length; i++) {
