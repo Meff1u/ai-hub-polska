@@ -29,7 +29,7 @@ module.exports = {
                 let memd = memberdata.find(m => m.id === page[i].id);
                 desc += `\`${i + 1 + (pageid * 10)}.\` **${mem.user.username}** - ${memd.level.lvl} poziom (${memd.level.xp} XP)\n`;
             }
-            const top = new EmbedBuilder().setTitle('AI Hub Polska Leaderboard').setDescription(desc).setColor('#ffffff').setThumbnail(interaction.guild.iconURL()).setFooter({ iconURL: member.user.displayAvatarURL(), text: `${member.user.username}, Twoje miejsce: ${executerplace} | Strona: ${pageid + 1}/${slicedleaderboard.length}` });
+            const top = new EmbedBuilder().setTitle('AI Hub Polska Leaderboard').setDescription(desc).setColor('#ffffff').setThumbnail(interaction.guild.iconURL()).setFooter({ iconURL: member.user.displayAvatarURL(), text: `${member.user.username}, Twoje miejsce: ${executerplace}` });
             pageid += 1;
             return top;
         });
@@ -62,12 +62,12 @@ module.exports = {
             buttons: [
                 {
                     type: ButtonTypes.previous,
-                    label: '⬅️',
+                    label: 'Poprzednia',
                     style: ButtonStyles.Primary
                 },
                 {
                     type: ButtonTypes.next,
-                    label: '➡️',
+                    label: 'Następna',
                     style: ButtonStyles.Primary
                 }
             ]
