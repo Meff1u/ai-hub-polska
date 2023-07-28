@@ -22,17 +22,19 @@ module.exports = {
         const executerplace = leaderboard.findIndex(e => e.id === member.user.id) + 1;
 
         let pageid = 0;
-        slicedleaderboard.map((page) => {
+        const embeds = slicedleaderboard.map((page) => {
             let desc = '';
             for (let i = 0; i < page.length; i++) {
                 let mem = interaction.guild.members.cache.get(page[i].id);
                 let memd = memberdata.find(m => m.id === page[i].id);
                 desc += `\`${i + 1 + (pageid * 10)}.\` **${mem.user.username}** - ${memd.level.lvl} poziom (${memd.level.xp} XP)\n`;
             }
-            console.log(desc);
+            const top = new EmbedBuilder().setTitle('AI Hub Polska Leaderboard').setDescription(desc).setColor('#ffffff').setThumbnail(interaction.guild.iconURL()).setFooter({ iconURL: member.user.displayAvatarURL(), text: `${member.user.username}, Twoje miejsce: ${executerplace} | Strona: ${pageid + 1}/${slicedleaderboard.length}` });
             pageid += 1;
+            return top;
         });
 
+        /*
         let desc = '';
         for (let i = 0; i < leaderboard.length; i++) {
             let mem = interaction.guild.members.cache.get(leaderboard[i].id);
@@ -46,8 +48,30 @@ module.exports = {
         .setColor('#ffffff')
         .setThumbnail(interaction.guild.iconURL())
         .setFooter({ iconURL: member.user.displayAvatarURL(), text: `${member.user.username}, Twoje miejsce: ${executerplace}` });
-
-        await interaction.followUp({ embeds: [top] });
+        */
+        // await interaction.followUp({ embeds: [top] });
+        await pagination({
+            embeds: embeds,
+            author: interaction.member.user,
+            interaction: interaction,
+            ephemeral: false,
+            time: 40000,
+            disableButtons: true,
+            fastSkip: false,
+            pageTravel: false,
+            buttons: [
+                {
+                    type: ButtonTypes.previous,
+                    label: '⬅️',
+                    style: ButtonStyles.Primary
+                },
+                {
+                    type: ButtonTypes.next,
+                    label: '➡️',
+                    style: ButtonStyles.Primary
+                }
+            ]
+        });
     }
 }
 
