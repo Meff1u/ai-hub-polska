@@ -18,7 +18,7 @@ module.exports = {
 
         let desc = '';
         for (let i = 0; i < leaderboard.length; i++) {
-            let mem = interaction.guild.members.cache.get(leaderboard[i].id);
+            let mem = await interaction.guild.members.fetch(leaderboard[i].id);
             let memd = memberdata.find(m => m.id === leaderboard[i].id)
             desc += `\`${i + 1}.\` **${mem.user.username}** - ${memd.level.lvl} poziom (${memd.level.xp} XP)\n`;
         }
