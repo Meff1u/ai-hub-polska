@@ -17,7 +17,7 @@ module.exports = {
         let state = 0;
         const presences = [
             { name: `${members.size} members <3`, type: ActivityType.Watching },
-            { name: `${threads.threads.size} models!`, type: ActivityType.Watching }
+            { name: `${threads.threads.size - 1} models!`, type: ActivityType.Watching }
         ]
         setInterval(() => {
             state = (state + 1) % presences.length;

@@ -33,23 +33,6 @@ module.exports = {
             pageid += 1;
             return top;
         });
-
-        /*
-        let desc = '';
-        for (let i = 0; i < leaderboard.length; i++) {
-            let mem = interaction.guild.members.cache.get(leaderboard[i].id);
-            let memd = memberdata.find(m => m.id === leaderboard[i].id)
-            desc += `\`${i + 1}.\` **${mem.user.username}** - ${memd.level.lvl} poziom (${memd.level.xp} XP)\n`;
-        }
-
-        const top = new EmbedBuilder()
-        .setTitle('AI Hub Polska Leaderboard')
-        .setDescription(desc)
-        .setColor('#ffffff')
-        .setThumbnail(interaction.guild.iconURL())
-        .setFooter({ iconURL: member.user.displayAvatarURL(), text: `${member.user.username}, Twoje miejsce: ${executerplace}` });
-        */
-        // await interaction.followUp({ embeds: [top] });
         await pagination({
             embeds: embeds,
             author: interaction.member.user,
