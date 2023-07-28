@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const memberdata = require('../../memberdata.json');
+const {pagination, ButtonTypes, ButtonStyles} = require('@devraelfreeze/discordjs-pagination');
 
 module.exports = {
     ephemeral: false,
@@ -16,6 +17,7 @@ module.exports = {
             }
         });
         await leaderboard.sort((a, b) => b.xp - a.xp);
+        console.log(sliceArray(leaderboard, 10));
 
         const executerplace = leaderboard.findIndex(e => e.id === member.user.id) + 1;
 
@@ -36,3 +38,14 @@ module.exports = {
         await interaction.followUp({ embeds: [top] });
     }
 }
+
+function sliceArray(array, length) {
+    const slicedArray = [];
+    
+    for (let i = 0; i < array.length; i += length) {
+      const podtablica = array.slice(i, i + length);
+      slicedArray.push(podtablica);
+    }
+    
+    return slicedArray;
+  }
