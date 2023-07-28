@@ -10,7 +10,10 @@ module.exports = {
         let member = interaction.member;
         let leaderboard = [];
         memberdata.forEach(e => {
-            leaderboard.push({ id: e.id, xp: e.level.xp + (e.level.lvl * 150) });
+            let mem = interaction.guild.members.cache.get(e.id);
+            if (mem) {
+                leaderboard.push({ id: e.id, xp: e.level.xp + (e.level.lvl * 150) });
+            }
         });
         await leaderboard.sort((a, b) => b.xp - a.xp);
 
@@ -18,7 +21,7 @@ module.exports = {
 
         let desc = '';
         for (let i = 0; i < leaderboard.length; i++) {
-            let mem = await interaction.guild.members.fetch(leaderboard[i].id);
+            let mem = interaction.guild.members.cache.get(leaderboard[i].id);
             let memd = memberdata.find(m => m.id === leaderboard[i].id)
             desc += `\`${i + 1}.\` **${mem.user.username}** - ${memd.level.lvl} poziom (${memd.level.xp} XP)\n`;
         }
