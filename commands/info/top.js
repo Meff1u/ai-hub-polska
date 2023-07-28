@@ -12,7 +12,7 @@ module.exports = {
         memberdata.forEach(e => {
             leaderboard.push({ id: e.id, xp: e.level.xp + (e.level.lvl * 150) });
         });
-        leaderboard.sort((a, b) => b.xp - a.xp);
+        await leaderboard.sort((a, b) => b.xp - a.xp);
 
         const executerplace = leaderboard.findIndex(e => e.id === member.user.id) + 1;
 

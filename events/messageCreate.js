@@ -5,7 +5,7 @@ const fs = require('node:fs');
 module.exports = {
     name: Events.MessageCreate,
     async execute(message) {
-        if (message.author.bot) return;
+        if (message.author.bot || message.guild.id !== '1124566634456174605') return;
         if (!memberdata.find(m => m.id === message.member.id)) memberdata.push({ id: message.member.id, level: { xp: 0, lvl: 1 } });
         const mmember = memberdata.find(m => m.id === message.member.id);
         mmember.messages ? mmember.messages += 1 : mmember.messages = 1;
