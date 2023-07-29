@@ -22,8 +22,8 @@ module.exports = {
 
         const executerplace = leaderboard.findIndex(e => e.id === member.user.id) + 1;
 
-        let pageid = 0;
         const generateEmbeds = async () => {
+            let pageid = 0;
             const embeds = await Promise.all(slicedleaderboard.map(async (page) => {
                 let userdataarr = [];
                 for (let i = 0; i < page.length; i++) {
