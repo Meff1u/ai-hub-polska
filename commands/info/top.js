@@ -25,7 +25,6 @@ module.exports = {
         const generateEmbeds = async () => {
             let pageid = 0;
             const embeds = await Promise.all(slicedleaderboard.map(async (page) => {
-                console.log(pageid);
                 let userdataarr = [];
                 for (let i = 0; i < page.length; i++) {
                     let mem = interaction.guild.members.cache.get(page[i].id);
@@ -44,8 +43,8 @@ module.exports = {
                 const top = new EmbedBuilder().setTitle('AI Hub Polska Leaderboard').setColor('#ffffff').setThumbnail(interaction.guild.iconURL()).setFooter({ iconURL: member.user.displayAvatarURL(), text: `${member.user.username}, Twoje miejsce: ${executerplace}` });
                 await imgch.send({ files: [topatt] }).then(async (m) => {
                     top.setImage(m.attachments.first().url);
-                    pageid += 1;
                 });
+                pageid += 1;
                 return top;
             }));
             return embeds;
