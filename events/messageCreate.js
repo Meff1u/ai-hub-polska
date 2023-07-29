@@ -2,6 +2,7 @@ const { Events } = require('discord.js');
 const memberdata = require('../memberdata.json');
 const fs = require('node:fs');
 const canvafy = require("canvafy");
+const { ownerID } = require('../config.json');
 
 module.exports = {
     name: Events.MessageCreate,
@@ -40,6 +41,20 @@ module.exports = {
             message.react('⬆️');
             message.react('⬇️');
         }
+
+        if (message.author.id === ownerID) {
+            if (message.content.startsWith('.eval')) {
+                const args = message.content.split(" ").slice(1);
+
+                try {
+                    const evaled = eval(args.join(' '));
+                    const cleaned = await clean(evaled);
+                    message.reply(`\`\`\`js\n${cleaned}\n\`\`\``);
+                } catch (err) {
+                    message.reply(`\`ERROR\` \`\`\`xl\n${cleaned}\n\`\`\``);
+                }
+            }
+        }
     }
 }
 
@@ -47,4 +62,15 @@ function getRandomXp(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const clean = async (text) => {
+    if (text && text.constructor.name == "Promise")
+      text = await text;
+    if (typeof text !== "string")
+      text = require("util").inspect(text, { depth: 1 });
+    text = text
+      .replace(/`/g, "`" + String.fromCharCode(8203))
+      .replace(/@/g, "@" + String.fromCharCode(8203));
+    return text;
 }
