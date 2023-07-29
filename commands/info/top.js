@@ -25,7 +25,6 @@ module.exports = {
         const generateEmbeds = async () => {
             let pageid = 0;
             const embeds = await Promise.all(slicedleaderboard.map(async (page) => {
-                console.log('Processing page:', page);
                 console.log(pageid);
                 let userdataarr = [];
                 for (let i = 0; i < page.length; i++) {
@@ -47,13 +46,14 @@ module.exports = {
                     top.setImage(m.attachments.first().url);
                 });
                 pageid++;
+                console.log(pageid);
                 return top;
             }));
             return embeds;
         }
 
         const embeds = await generateEmbeds();
-        console.log('Before pagination:', pageid);
+
         await pagination({
             embeds: embeds,
             author: interaction.member.user,
@@ -76,7 +76,6 @@ module.exports = {
                 }
             ]
         });
-        console.log('After pagination:', pageid);
     }
 }
 
