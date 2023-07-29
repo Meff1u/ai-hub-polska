@@ -23,5 +23,13 @@ module.exports = {
             state = (state + 1) % presences.length;
             client.user.setPresence({ activities: [presences[state]], status: 'dnd' });
         }, 15000);
+
+        client.guilds.cache.each(guild => {
+            guild.invites.fetch().then(ginvites => {
+                ginvites.each(ginvite => {
+                    client.invites[ginvite.code] = ginvite.uses;
+                })
+            })
+        })
     }
 }
