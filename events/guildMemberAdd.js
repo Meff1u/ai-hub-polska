@@ -9,8 +9,8 @@ module.exports = {
         let zaproszenie = '';
         member.guild.invites.fetch().then(ginvites => {
             ginvites.each(invite => {
-                if (invite.uses !== client.invites[invite.code]) {
-                    client.invites[invite.code] = invite.uses;
+                if (invite.uses !== member.client.invites[invite.code]) {
+                    member.client.invites[invite.code] = invite.uses;
                     zaproszenie = invite;
                 }
             })
