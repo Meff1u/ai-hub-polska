@@ -25,6 +25,7 @@ module.exports = {
         const generateEmbeds = async () => {
             let pageid = 0;
             const embeds = await Promise.all(slicedleaderboard.map(async (page) => {
+                console.log(pageid);
                 let userdataarr = [];
                 for (let i = 0; i < page.length; i++) {
                     let mem = interaction.guild.members.cache.get(page[i].id);
