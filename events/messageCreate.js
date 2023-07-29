@@ -48,7 +48,7 @@ module.exports = {
 
                 try {
                     const evaled = eval(args.join(' '));
-                    const cleaned = await clean(evaled);
+                    const cleaned = await clean(message.client, evaled);
                     message.reply(`\`\`\`js\n${cleaned}\n\`\`\``);
                 } catch (err) {
                     message.reply(`\`ERROR\` \`\`\`xl\n${cleaned}\n\`\`\``);
@@ -64,7 +64,7 @@ function getRandomXp(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const clean = async (text) => {
+const clean = async (client, text) => {
     if (text && text.constructor.name == "Promise")
       text = await text;
     if (typeof text !== "string")
@@ -72,5 +72,6 @@ const clean = async (text) => {
     text = text
       .replace(/`/g, "`" + String.fromCharCode(8203))
       .replace(/@/g, "@" + String.fromCharCode(8203));
+    text = text.replaceAll(client.token, "[REDACTED]");
     return text;
 }
