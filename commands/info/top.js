@@ -22,15 +22,18 @@ module.exports = {
 
         const executerplace = leaderboard.findIndex(e => e.id === member.user.id) + 1;
 
+        const imgch = await interaction.client.channels.fetch('1134180202050768907');
+
         const generateEmbeds = async () => {
-            let pageid = 0;
-            const embeds = await Promise.all(slicedleaderboard.map(async (page) => {
-                console.log(pageid);
+            const embeds = [];
+
+            for (let i = 0; i < slicedleaderboard.length; i++) {
                 let userdataarr = [];
-                for (let i = 0; i < page.length; i++) {
-                    let mem = interaction.guild.members.cache.get(page[i].id);
-                    let memd = memberdata.find(m => m.id === page[i].id);
-                    userdataarr.push({ top: i + 1 + (pageid * 10), avatar: mem.user.displayAvatarURL(), tag: mem.user.username, score: memd.level.lvl });
+                const page = slicedleaderboard[i];
+                for (let l = 0; l < page.length; l++) {
+                    let mem = interaction.guild.members.cache.get(page[l].id);
+                    let memd = memberdata.find(m => m.id === page[l].id);
+                    userdataarr.push({ top: l + 1 + (i * 10), avatar: mem.user.displayAvatarURL(), tag: mem.user.username, score: memd.level.lvl });
                 }
                 const topatt = await new canvafy.Top()
                     .setOpacity(0.6)
@@ -40,15 +43,10 @@ module.exports = {
                     .setColors({ box: '#212121', username: '#ffffff', score: '#ffffff', firstRank: '#f7c716', secondRank: '#9e9e9e', thirdRank: '#94610f' })
                     .setUsersData(userdataarr)
                     .build();
-                const imgch = await interaction.client.channels.fetch('1134180202050768907');
-                const top = new EmbedBuilder().setTitle('AI Hub Polska Leaderboard').setColor('#ffffff').setThumbnail(interaction.guild.iconURL()).setFooter({ iconURL: member.user.displayAvatarURL(), text: `${member.user.username}, Twoje miejsce: ${executerplace}` });
-                await imgch.send({ files: [topatt] }).then(async (m) => {
-                    top.setImage(m.attachments.first().url);
-                });
-                pageid++;
-                console.log(pageid);
-                return top;
-            }));
+                const m = await imgch.send({ files: [topatt] });
+                const top = new EmbedBuilder().setTitle('AI Hub Polska Leaderboard').setColor('#ffffff').setThumbnail(interaction.guild.iconURL()).setFooter({ iconURL: member.user.displayAvatarURL(), text: `${member.user.username}, Twoje miejsce: ${executerplace}` }).setImage(m.attachments.first().url)
+                embeds.push(top);
+            }
             return embeds;
         }
 
