@@ -1,6 +1,7 @@
 const { Events } = require('discord.js');
 const memberdata = require('../memberdata.json');
 const fs = require('node:fs');
+const canvafy = require("canvafy");
 
 module.exports = {
     name: Events.MessageCreate,
@@ -17,7 +18,16 @@ module.exports = {
             if (mmember.level.xp >= mmember.level.lvl * 150) {
                 mmember.level.xp -= mmember.level.lvl * 150;
                 mmember.level.lvl += 1;
-                message.client.channels.cache.get('1124566636020633662').send(`<a:peepoJAMMER:1133830488788840478> ${message.member} **LEVEL UP!!** (${mmember.level.lvl}) <a:peepoJAMMER:1133830488788840478>`);
+                const lvlupcard = await new canvafy.LevelUp()
+                    .setAvatar(message.member.user.displayAvatarURL())
+                    .setBackground('image', 'https://img.freepik.com/free-vector/paper-style-gradient-blue-wavy-background_23-2149121741.jpg')
+                    .setUsername(message.member.user.username)
+                    .setBorder('#000000')
+                    .setAvatarBorder('#ffffff')
+                    .setOverlayOpacity(0.7)
+                    .setLevels(mmember.level.lvl - 1, mmember.level.lvl)
+                    .build();
+                message.client.channels.cache.get('1124566636020633662').send({ content: `<a:peepoJAMMER:1133830488788840478> ${message.member} **LEVEL UP!!** <a:peepoJAMMER:1133830488788840478>`, files: [lvlupcard] });
             }
 
             const now = Date.now();
