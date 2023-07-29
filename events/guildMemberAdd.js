@@ -7,11 +7,12 @@ module.exports = {
         general.send(`[+] ${member} <a:hi:1133797463623475230> (${member.guild.members.cache.size})`);
         const modchannel = await member.guild.channels.fetch('1134459462585942076');
         let zaproszenie = '';
-        member.guild.invites.fetch().then(ginvites => {
+        await member.guild.invites.fetch().then(ginvites => {
             ginvites.each(invite => {
-                if (invite.uses !== member.client.invites[invite.code]) {
+                if (invite.uses != member.client.invites[invite.code]) {
                     member.client.invites[invite.code] = invite.uses;
                     zaproszenie = invite;
+                    console.log(zaproszenie);
                 }
             })
         });
