@@ -14,7 +14,7 @@ module.exports = {
         .setRequired(true)),
     async execute(interaction) {
         const url = interaction.options.getString('spotify_url');
-
+        
         try {
             const track = await Spotify.getTrack(url);
             if (track.toString().includes('Error')) return await interaction.editReply('Błąd, upewnij się, że dałeś link do __utworu spotify__, nie albumu lub playlisty, czy innej platformy.');
@@ -33,7 +33,7 @@ module.exports = {
             });
         } catch (err) {
             console.log(err);
-            return await interaction.followUp({ content: 'Link musi być do __utworu.__, nie albumu lub playlisty.\n(jeśli jednak dałeś link do utworu, oznacza to, że to jakiś poważny błąd i zgłoś to administratorowi, dzięki)' });
+            return await interaction.followUp({ content: 'Link musi być do __utworu spotify__, nie albumu lub playlisty.\n(jeśli jednak dałeś link do utworu, oznacza to, że to jakiś poważny błąd i zgłoś to administratorowi, dzięki)' });
         }
     }
 }
