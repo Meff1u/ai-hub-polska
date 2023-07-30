@@ -3,7 +3,7 @@ const { Events, EmbedBuilder } = require('discord.js');
 module.exports = {
     name: Events.GuildMemberRemove,
     async execute(member) {
-        const general = await member.guild.channels.fetch('1124566636020633662');
+        const general = await member.guild.channels.fetch('1135144674311536780');
         general.send(`[-] **${member.user.username}** <a:papa:1133797290209980466> (${member.guild.members.cache.size})`);
         const modchannel = await member.guild.channels.fetch('1134459462585942076');
         const log = new EmbedBuilder()
