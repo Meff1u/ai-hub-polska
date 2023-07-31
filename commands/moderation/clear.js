@@ -1,7 +1,10 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
+    id: '1134458628175310868',
     ephemeral: true,
+    type: 'moderation',
+    desc: 'Czyszczenie kanału z nadmiaru wiadomości.',
     data: new SlashCommandBuilder()
     .setName('clear')
     .setDescription('Czyści kanał z wiadomości.')

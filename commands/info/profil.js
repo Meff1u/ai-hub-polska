@@ -3,7 +3,10 @@ const canvacord = require('canvacord');
 const memberdata = require('../../memberdata.json');
 
 module.exports = {
+    id: '1133843325456232599',
     ephemeral: false,
+    type: 'info',
+    desc: 'Statystyki i informacje o profilu.',
     data: new SlashCommandBuilder()
     .setName('profil')
     .setDescription('Statystyki i informacje o profilu')

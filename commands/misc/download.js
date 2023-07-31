@@ -3,7 +3,10 @@ const Spotify = require('spottydl');
 const fs = require('node:fs');
 
 module.exports = {
+    id: '1133857689764634725',
     ephemeral: false,
+    type: 'misc',
+    desc: 'Pobieranie piosenek ze Spotify.',
     cooldown: 5,
     data: new SlashCommandBuilder()
     .setName('download')

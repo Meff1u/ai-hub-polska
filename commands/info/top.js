@@ -4,7 +4,11 @@ const {pagination, ButtonTypes, ButtonStyles} = require('@devraelfreeze/discordj
 const canvafy = require("canvafy");
 
 module.exports = {
+    id: '1134433851284914186',
     ephemeral: false,
+    type: 'info',
+    desc: 'Topka serwera w levelach.',
+    cooldown: 1,
     data: new SlashCommandBuilder()
     .setName('top')
     .setDescription('Topka serwera w levelach.'),

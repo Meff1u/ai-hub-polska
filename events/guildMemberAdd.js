@@ -12,7 +12,6 @@ module.exports = {
                 if (invite.uses != member.client.invites[invite.code]) {
                     member.client.invites[invite.code] = invite.uses;
                     zaproszenie = invite;
-                    console.log(zaproszenie);
                 }
             })
         });
