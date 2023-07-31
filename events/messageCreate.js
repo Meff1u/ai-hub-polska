@@ -15,10 +15,10 @@ module.exports = {
         const { lvlcooldowns } = message.client;
         if (!lvlcooldowns.has(message.member.id)) {
             const gainedxp = getRandomXp(5, 15);
-            mmember.level.xp += gainedxp;
+            mmember.level.xp ? mmember.level.xp += gainedxp : mmember.level.xp = gainedxp;
             if (mmember.level.xp >= mmember.level.lvl * 150) {
                 mmember.level.xp -= mmember.level.lvl * 150;
-                mmember.level.lvl += 1;
+                mmember.level.lvl ? mmember.level.lvl += 1 : mmember.level.lvl = 1;
                 const lvlupcard = await new canvafy.LevelUp()
                     .setAvatar(message.member.user.displayAvatarURL())
                     .setBackground('image', 'https://img.freepik.com/free-vector/paper-style-gradient-blue-wavy-background_23-2149121741.jpg')
