@@ -27,7 +27,7 @@ module.exports = {
         const time = Date.now();
         mmember.punishments.unshift({ type: 'Wyrzucenie', reason: reason, timestamp: time, by: interaction.member.id });
         await interaction.followUp({ content: `Pomyślnie wyrzucono \`${tokick.user.username}\`! Powód: \`${reason}\`` });
-        const modchannel = await member.guild.channels.fetch('1134459462585942076');
+        const modchannel = await interaction.member.guild.channels.fetch('1134459462585942076');
         const log = new EmbedBuilder()
         .setAuthor({ name: 'Wyrzucenie', iconURL: 'https://i.imgur.com/upMCK7a.png' })
         .setDescription(`• Oznaczenie: **${tokick}**\n• ID: **${tokick.id}**\n• Powód wyrzucenia: **${reason}**`)
