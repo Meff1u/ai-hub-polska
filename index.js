@@ -23,6 +23,7 @@ client.commands = new Collection();
 client.lvlcooldowns = new Collection();
 client.cmdcooldowns = new Collection();
 client.invites = {};
+client.captcha = {};
 
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);

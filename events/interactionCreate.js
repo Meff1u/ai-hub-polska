@@ -1,4 +1,4 @@
-const { Events, Collection } = require('discord.js');
+const { Events, Collection, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require('discord.js');
 
 module.exports = {
 	name: Events.InteractionCreate,
@@ -53,5 +53,33 @@ module.exports = {
                 }
             }
         }
+        else if (interaction.isButton()) {
+            if (interaction.customId === 'regaccept') {
+                if (interaction.member.roles.cache.has('1136044660016554037')) return await interaction.reply({ content: 'Już zaakceptowałeś regulamin :)', ephemeral: true });
+                const modal = new ModalBuilder().setCustomId('verify').setTitle('Potwierdź, że nie jesteś botem!');
+                let n1 = randomInt(10); n2 = randomInt(10);
+                interaction.client.captcha[interaction.member.id] = n1 + n2;
+                const captcha = new TextInputBuilder().setCustomId('captcha').setLabel(`${n1} + ${n2}`).setStyle(TextInputStyle.Short).setPlaceholder('Podaj wynik powyższego działania...').setRequired(true).setMaxLength(2).setMinLength(1);
+                const row = new ActionRowBuilder().addComponents(captcha);
+                modal.addComponents(row);
+                await interaction.showModal(modal);
+            }
+        }
+        else if (interaction.isModalSubmit()) {
+            if (interaction.customId === 'verify') {
+                if (interaction.client.captcha[interaction.member.id] == interaction.fields.getTextInputValue('captcha')) {
+                    const role = await interaction.guild.roles.fetch('1136044660016554037');
+                    await interaction.member.roles.add(role);
+                    await interaction.reply({ content: 'Pomyślnie zweryfikowano! :)', ephemeral: true });
+                }
+                else {
+                    await interaction.reply({ content: 'Nieprawydłowy wynik działania, spróbuj ponownie.', ephemeral: true });
+                }
+            }
+        }
 	},
 };
+
+function randomInt(max) {
+    return Math.floor(Math.random() * max) + 1;
+}
