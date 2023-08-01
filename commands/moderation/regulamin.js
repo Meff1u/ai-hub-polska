@@ -25,5 +25,6 @@ module.exports = {
         const row = new ActionRowBuilder().addComponents(accpet);
 
         await interaction.channel.send({ embeds: [reg], components: [row] });
+        await interaction.followUp({ content: 'Regulamin zaaktualizowany!' });
     }
 }
