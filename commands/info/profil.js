@@ -29,7 +29,10 @@ module.exports = {
 
         let leaderboard = [];
         memberdata.forEach(e => {
-            leaderboard.push({ id: e.id, xp: e.level.xp + (e.level.lvl * 150) });
+            let mem = interaction.guild.members.cache.get(e.id);
+            if (mem) {
+                leaderboard.push({ id: e.id, xp: e.level.xp + (((e.level.lvl * (e.level.lvl + 1))/2) * 150) });
+            }
         });
         leaderboard.sort((a, b) => b.xp - a.xp);
         const rankplace = leaderboard.findIndex(e => e.id === member.user.id) + 1;
