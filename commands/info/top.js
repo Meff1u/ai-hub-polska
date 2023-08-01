@@ -18,7 +18,7 @@ module.exports = {
         memberdata.forEach(e => {
             let mem = interaction.guild.members.cache.get(e.id);
             if (mem) {
-                leaderboard.push({ id: e.id, xp: e.level.xp + (e.level.lvl * 150) });
+                leaderboard.push({ id: e.id, xp: e.level.xp + (((e.level.lvl * (e.level.lvl + 1))/2) * 150) });
             }
         });
         await leaderboard.sort((a, b) => b.xp - a.xp);
