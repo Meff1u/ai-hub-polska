@@ -39,7 +39,7 @@ module.exports = {
                 for (let l = 0; l < page.length; l++) {
                     let mem = interaction.guild.members.cache.get(page[l].id);
                     let memd = memberdata.find(m => m.id === page[l].id);
-                    userdataarr.push({ top: l + 1 + (i * 10), avatar: mem.user.displayAvatarURL(), tag: mem.user.username, score: `${memd.level.lvl} (${memd.level.xp})` });
+                    userdataarr.push({ top: l + 1 + (i * 10), avatar: mem.user.displayAvatarURL(), tag: mem.user.username, score: `${memd.level?.lvl ? memd.level.lvl : 1} (${memd.level?.xp ? memd.level.xp : 0})` });
                 }
                 const topatt = await new canvafy.Top()
                     .setOpacity(0.6)
