@@ -73,7 +73,7 @@ module.exports = {
                     await interaction.reply({ content: 'Pomyślnie zweryfikowano! :)', ephemeral: true });
                 }
                 else {
-                    await interaction.reply({ content: 'Nieprawydłowy wynik działania, spróbuj ponownie.', ephemeral: true });
+                    await interaction.reply({ content: 'Nieprawidłowy wynik działania, spróbuj ponownie.', ephemeral: true });
                 }
             }
         }
