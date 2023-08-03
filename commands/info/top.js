@@ -63,7 +63,7 @@ module.exports = {
             author: interaction.member.user,
             interaction: interaction,
             ephemeral: false,
-            time: 40000,
+            time: 120000,
             disableButtons: true,
             fastSkip: false,
             pageTravel: false,
