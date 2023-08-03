@@ -3,7 +3,7 @@ const memberdata = require('../../memberdata.json');
 
 module.exports = {
     id: '1135568208900927489',
-    ephemeral: true,
+    ephemeral: false,
     type: 'moderation',
     desc: 'Wyrzucanie użytkownika z serwera.',
     data: new SlashCommandBuilder()
@@ -16,10 +16,10 @@ module.exports = {
     .addStringOption(o => o
         .setName('powód')
         .setDescription('Podaj powód wyrzucenia')
-        .setRequired(false)),
+        .setRequired(true)),
     async execute(interaction) {
         const tokick = interaction.options.getMember('user');
-        const reason = interaction.options.getString('powód') || 'Brak';
+        const reason = interaction.options.getString('powód');
         if (tokick.roles.cache.has('1124567158475735040') || tokick.roles.cache.has('1124566737644421321')) return await interaction.followUp({ content: `Nie możesz wyrzucić użytkownika należącego do administracji lub moderacji!` });
         if (!memberdata.find(m => m.id === tokick.id)) memberdata.push({ id: tokick.id, punishments: [] });
         const mmember = memberdata.find(m => m.id === tokick.id);
