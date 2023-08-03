@@ -14,7 +14,7 @@ module.exports = {
         const threads = await channel.threads.fetch();
         let state = 0;
         const presences = [
-            { name: `${client.guilds.cache.get(serverID).members.cache.size} members <3`, type: ActivityType.Watching },
+            { name: `${fetchMembers(client)} members <3`, type: ActivityType.Watching },
             { name: `${threads.threads.size - 1} models!`, type: ActivityType.Watching }
         ]
         setInterval(async () => {
@@ -31,4 +31,8 @@ module.exports = {
             })
         })
     }
+}
+
+async function fetchMembers(client) {
+    return await client.guilds.cache.get(serverID).members.fetch().size;
 }
