@@ -10,17 +10,20 @@ module.exports = {
             await g.members.fetch({ cache: true });
             console.log(`Fetched members for ${g.name} (${g.memberCount})`);
         });
-        const channel = await client.channels.fetch('1124570199018967075');
-        const threads = await channel.threads.fetch();
+
         let state = 0;
-        const presences = [
-            { name: `${fetchMembers(client)} members <3`, type: ActivityType.Watching },
-            { name: `${threads.threads.size - 1} models!`, type: ActivityType.Watching }
-        ]
+        const presences = 2
         setInterval(async () => {
-            await client.guilds.cache.get(serverID).members.fetch();
-            state = (state + 1) % presences.length;
-            client.user.setPresence({ activities: [presences[state]], status: 'dnd' });
+            if (state === 0) {
+                const members = await client.guilds.cache.get(serverID).members.fetch();
+                client.user.setPresence({ activities: [{ name: `${members.size} members <3`, type: ActivityType.Watching }], status: 'dnd' });
+            }
+            else if (state === 1) {
+                const channel = await client.channels.fetch('1124570199018967075');
+                const threads = await channel.threads.fetch();
+                client.user.setPresence({ activities: [{ name: `${threads.threads.size} models!`, type: ActivityType.Watching }], status: 'dnd' });
+            }
+            state = (state + 1) % presences;
         }, 15000);
 
         client.guilds.cache.each(guild => {
@@ -31,8 +34,4 @@ module.exports = {
             })
         })
     }
-}
-
-async function fetchMembers(client) {
-    return await client.guilds.cache.get(serverID).members.fetch().size;
 }
