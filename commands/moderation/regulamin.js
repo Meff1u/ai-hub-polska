@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
 
 module.exports = {
-    id: '?',
+    id: '1136031404191404053',
     ephemeral: true,
     type: 'moderation',
     desc: 'Regulamin updater.',

@@ -66,12 +66,17 @@ module.exports = {
             time: 120000,
             disableButtons: true,
             fastSkip: false,
-            pageTravel: false,
+            pageTravel: true,
             buttons: [
                 {
                     type: ButtonTypes.previous,
                     label: 'Poprzednia',
                     style: ButtonStyles.Primary
+                },
+                {
+                    type: ButtonTypes.number,
+                    label: 'Strona',
+                    style: ButtonStyles.Secondary
                 },
                 {
                     type: ButtonTypes.next,
