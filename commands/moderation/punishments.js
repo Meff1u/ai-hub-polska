@@ -4,7 +4,7 @@ const {pagination, ButtonTypes, ButtonStyles} = require('@devraelfreeze/discordj
 
 module.exports = {
     id: '1136687318405758996',
-    ephemeral: true,
+    ephemeral: false,
     type: 'moderation',
     desc: 'Lista wszystkich kar użytkownika.',
     data: new SlashCommandBuilder()
