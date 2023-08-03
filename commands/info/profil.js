@@ -41,9 +41,9 @@ module.exports = {
 
         const rank = new canvacord.Rank()
         .setAvatar(member.user.displayAvatarURL())
-        .setCurrentXP(mmember.level.xp)
-        .setRequiredXP(mmember.level.lvl * 150)
-        .setLevel(mmember.level.lvl)
+        .setCurrentXP(mmember.level?.xp || 0)
+        .setRequiredXP(mmember.level?.lvl * 150 || 150)
+        .setLevel(mmember.level?.lvl || 1)
         .setStatus(member.user.presence?.status || 'offline')
         .setProgressBar(member.roles.highest?.hexColor, 'COLOR')
         .setUsername(member.user.username)
