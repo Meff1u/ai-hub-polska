@@ -23,6 +23,7 @@ module.exports = {
         if (tokick.roles.cache.has('1124567158475735040') || tokick.roles.cache.has('1124566737644421321')) return await interaction.followUp({ content: `Nie możesz wyrzucić użytkownika należącego do administracji lub moderacji!` });
         if (!memberdata.find(m => m.id === tokick.id)) memberdata.push({ id: tokick.id, punishments: [] });
         const mmember = memberdata.find(m => m.id === tokick.id);
+        if (!mmember.punishments) mmember.punishments = [];
         await tokick.kick(reason);
         const time = Date.now();
         mmember.punishments.unshift({ type: 'Wyrzucenie', reason: reason, timestamp: time, by: interaction.member.id });
