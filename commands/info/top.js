@@ -32,8 +32,9 @@ module.exports = {
 
         const generateEmbeds = async () => {
             const embeds = [];
+            length = slicedleaderboard.length > 10 ? 10 : slicedleaderboard.length;
 
-            for (let i = 0; i < slicedleaderboard.length < 11 ? slicedleaderboard.length : 10; i++) {
+            for (let i = 0; i < length; i++) {
                 let userdataarr = [];
                 const page = slicedleaderboard[i];
                 for (let l = 0; l < page.length; l++) {
