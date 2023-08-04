@@ -15,7 +15,7 @@ module.exports = {
         .setRequired(true))
     .addStringOption(o => o
         .setName('powód')
-        .setDescription('Podaj powód wyrzucenia')
+        .setDescription('Podaj powód wyrzucenia.')
         .setRequired(true)),
     async execute(interaction) {
         const tokick = interaction.options.getMember('user');
