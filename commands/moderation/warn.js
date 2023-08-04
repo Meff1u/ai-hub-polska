@@ -26,7 +26,7 @@ module.exports = {
         if (!mmember.punishments) mmember.punishments = [];
         const time = Date.now();
         mmember.punishments.unshift({ type: 'Ostrzeżenie', reason: reason, timestamp: time, by: interaction.member.id });
-        await interaction.followUp({ content: `Pomyślnie ostrzeżono \`${tokick.user.username}\`! Powód: \`${reason}\` *(To jego ${mmember.punishments.filter(x => x.type == 'Wyrzucenie').length} ostrzeżenie)*` });
+        await interaction.followUp({ content: `Pomyślnie ostrzeżono \`${tokick.user.username}\`! Powód: \`${reason}\` *(To jego ${mmember.punishments.filter(x => x.type == 'Ostrzeżenie').length} ostrzeżenie)*` });
         const modchannel = await interaction.member.guild.channels.fetch('1134459462585942076');
         const log = new EmbedBuilder()
         .setAuthor({ name: 'Ostrzeżenie', iconURL: 'https://i.imgur.com/e14To0e.png' })
