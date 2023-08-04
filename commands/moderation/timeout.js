@@ -27,6 +27,7 @@ module.exports = {
         const reason = interaction.options.getString('powód');
         const timeouttime = ms(interaction.options.getString('czas'));
         if (totimeout.roles.cache.has('1124567158475735040') || totimeout.roles.cache.has('1124566737644421321')) return await interaction.followUp({ content: `Nie możesz wyciszyć użytkownika należącego do administracji lub moderacji!`, ephemeral: true });
+        if (totimeout.isCommunicationDisabled()) return await interaction.followUp({ content: 'Ten użytkownik jest już wyciszony!' });
         if (!memberdata.find(m => m.id === totimeout.id)) memberdata.push({ id: totimeout.id, punishments: [] });
         const mmember = memberdata.find(m => m.id === totimeout.id);
         if (!mmember.punishments) mmember.punishments = [];
