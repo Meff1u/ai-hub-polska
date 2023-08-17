@@ -33,8 +33,9 @@ module.exports = {
             }
 
             const now = Date.now();
-            lvlcooldowns.set(message.member.id, now);
-            setTimeout(() => lvlcooldowns.delete(message.member.id), 60000);
+            const memid = message.member.id; 
+            lvlcooldowns.set(memid, now);
+            setTimeout(() => lvlcooldowns.delete(memid), 60000);
         }
         fs.writeFileSync(`./memberdata.json`, JSON.stringify(memberdata));
 
