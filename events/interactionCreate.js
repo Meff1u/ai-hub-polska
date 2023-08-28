@@ -109,6 +109,17 @@ module.exports = {
                 const row = new ActionRowBuilder().addComponents(select);
                 await interaction.reply({ embeds: [e], components: [row], ephemeral: true });
             }
+            else if (interaction.customId === 'ogloszenia') {
+                const role = await interaction.guild.roles.fetch('1145641140486422528');
+                if (interaction.member.roles.cache.has(role.id)) {
+                    await interaction.member.roles.remove(role);
+                    await interaction.reply({ content: 'Usunięto rolę **Ogłoszenia**!', ephemeral: true });
+                }
+                else {
+                    await interaction.member.roles.add(role);
+                    await interaction.reply({ content: 'Dodano rolę **Ogłoszenia**!', ephemeral: true });
+                }
+            }
         }
         else if (interaction.isModalSubmit()) {
             if (interaction.customId === 'verify') {
