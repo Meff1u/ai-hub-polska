@@ -1,6 +1,6 @@
 {
   "name": "ai-hub-polska",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "description": "Bot dla spolecznosci AI Hub Polska",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "discord.js": "^14.11.0",
     "ms": "^2.1.3",
     "node-fetch": "^3.3.2",
-    "spottydl": "^0.2.2"
+    "spottydl": "^0.2.2",
+    "yt-converter": "^1.3.4"
   }
 }
