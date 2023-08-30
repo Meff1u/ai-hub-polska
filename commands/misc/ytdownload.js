@@ -3,7 +3,7 @@ const yt = require("yt-converter");
 const fs = require('node:fs');
 
 module.exports = {
-    id: '?',
+    id: '1146385903292522556',
     ephemeral: false,
     type: 'misc',
     desc: 'Pobieranie piosenek z YT.',
