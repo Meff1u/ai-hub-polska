@@ -3,12 +3,12 @@ const Spotify = require('spottydl');
 const MusicDownloader = require("music-dwnldr");
 const fs = require('node:fs');
 const { spotify } = require('../../config.json');
-let credentials = require({
+/*let credentials = require({
     "clientId": `${spotify.ID.toString()}`,
     "clientSecret": `${spotify.secret.toString()}`
-});
+});*/
 
-let downloader = new MusicDownloader(credentials, __dirname);
+let downloader = new MusicDownloader({ clientId: spotify.ID, clientSecret: spotify.secret }, __dirname);
 
 module.exports = {
     id: '1133857689764634725',
