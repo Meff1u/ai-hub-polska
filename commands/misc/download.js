@@ -25,6 +25,7 @@ module.exports = {
             await interaction.followUp(`Pobieranie **${title}**...`);
             try {
                 await Spotify.downloadTrack(track, './tracks').then(async r => {
+                    console.log(r);
                     if (r[0].status === 'Success') {
                         const file = new AttachmentBuilder(r[0].filename, { name: `${title}.mp3` });
                         await interaction.editReply({ content: 'Pobrano.', files: [file] });
