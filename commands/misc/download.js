@@ -4,8 +4,8 @@ const MusicDownloader = require("music-dwnldr");
 const fs = require('node:fs');
 const { spotify } = require('../../config.json');
 let credentials = require({
-    "clientId": spotify.ID,
-    "clientSecret": spotify.secret
+    "clientId": `${spotify.ID}`,
+    "clientSecret": `${spotify.secret}`
 });
 
 let downloader = new MusicDownloader(credentials, __dirname);
