@@ -12,7 +12,8 @@ module.exports = {
         });
 
         let state = 0;
-        const presences = 2
+        const presences = 2;
+        console.log(threadsa.threads.size);
         setInterval(async () => {
             if (state === 0) {
                 const members = await client.guilds.cache.get(serverID).members.fetch();
@@ -20,8 +21,9 @@ module.exports = {
             }
             else if (state === 1) {
                 const channel = await client.channels.fetch('1124570199018967075');
-                const threads = await channel.threads.fetch();
-                client.user.setPresence({ activities: [{ name: `${threads.threads.size} models!`, type: ActivityType.Watching }], status: 'dnd' });
+                const threads = await channel.threads.fetchActive();
+                const threadsa = await channel.threads.fetchArchived();
+                client.user.setPresence({ activities: [{ name: `${threads.threads.size + threadsa.threads.size} models!`, type: ActivityType.Watching }], status: 'dnd' });
             }
             state = (state + 1) % presences;
         }, 15000);
