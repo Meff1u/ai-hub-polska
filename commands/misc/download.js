@@ -8,7 +8,7 @@ const { spotify } = require('../../config.json');
     "clientSecret": `${spotify.secret.toString()}`
 });*/
 
-let downloader = new MusicDownloader({ clientId: spotify.ID, clientSecret: spotify.secret }, __dirname);
+let downloader = new MusicDownloader({ clientId: spotify.ID, clientSecret: spotify.secret }, './tracks');
 
 module.exports = {
     id: '1133857689764634725',
