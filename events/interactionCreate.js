@@ -74,14 +74,14 @@ module.exports = {
             else if (interaction.customId === 'info2') {
                 const e = new EmbedBuilder()
                 .setTitle('Tworzenie coverów/modeli - Strony')
-                .setDescription('- [EasyGUI na Google Colab](https://colab.research.google.com/drive/1r4IRL0UA7JEoZ0ZK8PKfMyTIBHKpyhcw)\n- [Kits.ai](https://www.kits.ai/)\n- [Voicemy.ai](https://www.voicemy.ai/)\n- Banger, aplikacja na [Android](https://play.google.com/store/apps/details?id=ai.cover.song.voicify) i [iOS](https://apps.apple.com/ae/app/id6452017015)')
+                .setDescription('- [EasyGUI na Google Colab](https://colab.research.google.com/drive/1r4IRL0UA7JEoZ0ZK8PKfMyTIBHKpyhcw)*\n- [Applio na Google Colab](https://applio.iahispano.com/)*\n- [Kits.ai](https://www.kits.ai/)\n- [Voicemy.ai](https://www.voicemy.ai/)\n- Banger, aplikacja na [Android](https://play.google.com/store/apps/details?id=ai.cover.song.voicify) i [iOS](https://apps.apple.com/ae/app/id6452017015)\n\n* *Google ostatnio blokuje postawione na colabie RVC pod pretekstem podejrzanych aktywności, przez co sesje się bugują, crashują i rozłączają. Zalecane jest używanie programów lokalnie lub stron nieoznaczonych gwiazdką.*')
                 .setColor('#ff0000');
                 await interaction.reply({ embeds: [e], ephemeral: true });
             }
             else if (interaction.customId === 'info3') {
                 const e = new EmbedBuilder()
                 .setTitle('Tworzenie coverów/modeli - Lokalnie')
-                .setDescription('- [Mangio-RVC](https://github.com/Mangio621/Mangio-RVC-Fork)\n- [VoiceConversionWebUI](https://huggingface.co/lj1995/VoiceConversionWebUI/tree/main)')
+                .setDescription('- [Applio-RVC](https://github.com/IAHispano/Applio-RVC-Fork)\n- [Mangio-RVC](https://github.com/Mangio621/Mangio-RVC-Fork)\n- [VoiceConversionWebUI](https://huggingface.co/lj1995/VoiceConversionWebUI/tree/main)')
                 .setColor('#ff0000');
                 await interaction.reply({ embeds: [e], ephemeral: true });
             }
