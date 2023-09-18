@@ -107,7 +107,7 @@ module.exports = {
                     new StringSelectMenuOptionBuilder().setLabel('Mój AI cover brzmi źle/nie jest czysty, dlaczego?').setValue('pyt6'),
                     new StringSelectMenuOptionBuilder().setLabel('Czym jest epoch?').setValue('pyt7'),
                     new StringSelectMenuOptionBuilder().setLabel('Jaki typ ekstrakcji wybrać?').setValue('pyt8'),
-                    new StringSelectMenuOptionBuilder().setLabel('Co się stało z Google Colab?').setValue('pyt9')
+                    new StringSelectMenuOptionBuilder().setLabel('Co się stało z Google Colab?').setValue('pyt9'),
                     new StringSelectMenuOptionBuilder().setLabel('Czym jest Tensorboard?').setValue('pyt10')
                 );
                 const row = new ActionRowBuilder().addComponents(select);
