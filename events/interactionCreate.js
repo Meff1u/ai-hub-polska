@@ -104,7 +104,11 @@ module.exports = {
                     new StringSelectMenuOptionBuilder().setLabel('Czy mogę poprosić o pomoc w rozwiązywaniu problemów?').setValue('pyt3'),
                     new StringSelectMenuOptionBuilder().setLabel('Jak wytrenować swój model AI?').setValue('pyt4'),
                     new StringSelectMenuOptionBuilder().setLabel('Jak zrobić swój cover AI?').setValue('pyt5'),
-                    new StringSelectMenuOptionBuilder().setLabel('Mój AI cover brzmi źle/nie jest czysty, dlaczego?').setValue('pyt6')
+                    new StringSelectMenuOptionBuilder().setLabel('Mój AI cover brzmi źle/nie jest czysty, dlaczego?').setValue('pyt6'),
+                    new StringSelectMenuOptionBuilder().setLabel('Czym jest epoch?').setValue('pyt7'),
+                    new StringSelectMenuOptionBuilder().setLabel('Jaki typ ekstrakcji wybrać?').setValue('pyt8'),
+                    new StringSelectMenuOptionBuilder().setLabel('Co się stało z Google Colab?').setValue('pyt9')
+                    new StringSelectMenuOptionBuilder().setLabel('Czym jest Tensorboard?').setValue('pyt10')
                 );
                 const row = new ActionRowBuilder().addComponents(select);
                 await interaction.reply({ embeds: [e], components: [row], ephemeral: true });
@@ -157,6 +161,22 @@ module.exports = {
                 }
                 else if (interaction.values[0] === 'pyt6') {
                     const e = new EmbedBuilder().setTitle('Mój AI cover brzmi źle/nie jest czysty, dlaczego?').setDescription('Rezultat covera jest zależny od wielu czynników i nie zawsze jest to twoja wina. Pamiętaj, aby twój cover brzmiał dobrze ważne jest, aby:\n- Wokal podany do konwersji nie miał żadnych intrumentali/dzwięków w tle/itp. Ponadto powinien on być czysty i mieć mało przerw.\n- Używać dobrego modelu głosu. Model, którego używasz być może jest niepełny lub po prostu nie radzi sobie z tego typu konwersją.\n- Dobrać odpowiedni sposób konwersji i pitch. Rezultat może wyjść dobrze na defaultowych ustawieniach programu, ale nie zawsze. Upewnij się, że testowałeś różne sposoby konwersji (harvest, crepe, mangio-crepe, rmvpe itp.) i pitchu (dodawanie lub odejmowanie jego wartości).').setColor('#ff0000');
+                    interaction.reply({ embeds: [e], ephemeral: true });
+                }
+                else if (interaction.values[0] === 'pyt7') {
+                    const e = new EmbedBuilder().setTitle('Czym jest epoch?').setDescription('Epoch to liczba iteracji wykonywanych podczas szkolenia w celu ukończenia jednego pełnego cyklu zbioru danych. Na przykład, jeśli masz zbiór danych składający się z 200 próbek audio i ustawisz batch_size na 10, 10 próbek audio zostanie przetworzonych w każdej iteracji. Aby przetworzyć wszystkie 200 próbek audio, należy wykonać łącznie 20 iteracji. Ten pełny cykl jest określany jako jeden epoch. Więc 300 Epochs oznacza, że podczas trenowania modelu sztuczna inteligencja przeszła 300 razy przez cały zbiór danych.').setColor('#ff0000');
+                    interaction.reply({ embeds: [e], ephemeral: true });
+                }
+                else if (interaction.values[0] === 'pyt8') {
+                    const e = new EmbedBuilder().setTitle('Jaki typ ekstrakcji wybrać?').setDescription('- **pm**: Zapewnia szybki, ale nieefektywny wynik i jest mniej wydajny model głosu.\n- **Harvest**: Oferuje lepszą replikację dźwięków z naszej Acapelli, ale jest wolniejszy i często początkowo wyświetla błędy.\n- **Dio**: Może być używany w momentach, gdy nasza Acapella ma szybką wymowę słów, na przykład w rapie.\n- **Crepe-tiny**: Podobne do crepe, przetwarza szybciej, ale z mniejszą agresywnością.\n- **Mangio-crepe**: Zapewnia lepsze wyniki pod względem oddechów i działa tak samo jak crepe, ale jest wolniejszy i czasami daje gorsze wyniki.\n- **Mangio-crepe-tiny**: Podobnie jak mangio-crepe, jest szybszy, ale mniej agresywny.\n- **rmvpe**: Jest to połączenie pm i crepe, ale jest szybkie zarówno w przypadku szkolenia, jak i wnioskowania. Jest najbardziej wydajny modelowi głosowemu (obecnie najlepsza opcja).').setColor('#ff0000');
+                    interaction.reply({ embeds: [e], ephemeral: true });
+                }
+                else if (interaction.values[0] === 'pyt9') {
+                    const e = new EmbedBuilder().setTitle('Co się stało z Google Colab?').setDescription('Niestety, Google Colab jest obecnie niedostępny, ponieważ Google podjął środki w celu ograniczenia dostępu do usług Colab, w tym Applio. Uprzejmie prosimy o powstrzymanie się od zadawania tego pytania w przyszłości, ponieważ sytuacja pozostaje niezmieniona.').setColor('#ff0000');
+                    interaction.reply({ embeds: [e], ephemeral: true });
+                }
+                else if (interaction.values[0] === 'pyt10') {
+                    const e = new EmbedBuilder().setTitle('Czym jest Tensorboard?').setDescription('Tensorboard to seria wykresów, na których możemy monitorować postępy naszego modelu podczas treningu, ale istnieje wiele wykresów. Nas interesuje tylko wykres o nazwie "g/total". Można go znaleźć wybierając "SCALARS" i wpisując wcześniej wymienioną frazę w wyszukiwarkę').setColor('#ff0000');
                     interaction.reply({ embeds: [e], ephemeral: true });
                 }
             }
