@@ -88,7 +88,7 @@ module.exports = {
             else if (interaction.customId === 'info4') {
                 const e = new EmbedBuilder()
                 .setTitle('Poradniki')
-                .setDescription('- [RVC v2 AI Cover Guide (by kalomaze)](https://docs.google.com/document/d/13_l1bd1Osgz7qlAZn-zhklCbHpVRk6bYOuAuB78qmsE/edit?usp=sharing)\n- [Jak zrobić AI Cover (RVC2)](https://www.youtube.com/watch?v=8V4qI8ta_bU) (Film nagrany przez <@1026518790848122931>)\n- [Trenowanie modeli RVC v2 Poradnik](https://docs.google.com/document/d/1SQnkXCuEZw4ZO5voi1jxPXCwffvR3fNxYBbox2O5UaM/edit?usp=sharing) (by <@350691811280420864>)\n- [Tworzenie Coverów AI w RVC v2 Poradnik](https://docs.google.com/document/d/1mTO740MwvAdlzcmUMeviw7A_oo0ErLWDdRetLcAQ9Hw/edit?usp=sharing) (by <@350691811280420864>)')
+                .setDescription('- [RVC v2 AI Cover Guide](https://docs.google.com/document/d/13_l1bd1Osgz7qlAZn-zhklCbHpVRk6bYOuAuB78qmsE/edit?usp=sharing) (by kalomaze)\n- [Jak zrobić AI Cover (RVC2)](https://www.youtube.com/watch?v=8V4qI8ta_bU) (Film nagrany przez <@1026518790848122931>)\n- [Trenowanie modeli RVC v2 Poradnik](https://docs.google.com/document/d/1SQnkXCuEZw4ZO5voi1jxPXCwffvR3fNxYBbox2O5UaM/edit?usp=sharing) (by <@350691811280420864>)\n- [Tworzenie Coverów AI w RVC v2 Poradnik](https://docs.google.com/document/d/1mTO740MwvAdlzcmUMeviw7A_oo0ErLWDdRetLcAQ9Hw/edit?usp=sharing) (by <@350691811280420864>)\n- [Instalacja Applio RVC za pomocą gita na czystym Windowsie](https://www.youtube.com/watch?v=x7aOq7gCY4s) (by iroaK)')
                 .setColor('#ff0000');
                 await interaction.reply({ embeds: [e], ephemeral: true });
             }
