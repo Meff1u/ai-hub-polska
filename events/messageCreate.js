@@ -43,6 +43,12 @@ module.exports = {
             message.react('⬆️');
             message.react('⬇️');
         }
+        else if (message.channelId === '1124672691664867398') {
+            await message.startThread({
+                name: `Dyskusja`,
+                autoArchiveDuration: 60,
+            });
+        }
 
         if (message.author.id === ownerID) {
             if (message.content.startsWith('.eval')) {

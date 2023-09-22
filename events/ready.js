@@ -13,7 +13,6 @@ module.exports = {
 
         let state = 0;
         const presences = 2;
-        console.log(threadsa.threads.size);
         setInterval(async () => {
             if (state === 0) {
                 const members = await client.guilds.cache.get(serverID).members.fetch();
