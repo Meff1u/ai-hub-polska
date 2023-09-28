@@ -15,8 +15,22 @@ module.exports = {
         let member = interaction.member;
         let leaderboard = [];
         const channel = await interaction.client.channels.fetch('1124570199018967075');
-        const threads = await channel.threads.fetch();
+        const threads = await channel.threads.fetchActive();
+        const threadsa = await channel.threads.fetchArchived();
         threads.threads.forEach(async (t) => {
+            if (t.id === '1124571705738809425') return;
+            let mem = interaction.guild.members.cache.get(t.ownerId);
+            if (mem) {
+                let targetIndex = leaderboard.findIndex(i => i.id === t.ownerId);
+                if (targetIndex !== -1) {
+                    leaderboard[targetIndex].posts += 1;
+                }
+                else {
+                    leaderboard.push({ id: t.ownerId, posts: 1 });
+                }
+            }
+        });
+        threadsa.threads.forEach(async (t) => {
             if (t.id === '1124571705738809425') return;
             let mem = interaction.guild.members.cache.get(t.ownerId);
             if (mem) {
