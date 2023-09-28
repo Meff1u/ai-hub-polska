@@ -25,7 +25,7 @@ module.exports = {
                         const attc = new EmbedBuilder().setColor('#FFAC33').setImage(att.url);
                         embeds.push(attc);
                     }
-                    else if (att.contentType === 'audio/mpeg') {
+                    else if (att.contentType === 'audio/mpeg' || att.contentType === 'audio/x-wav') {
                         const audio = new ButtonBuilder().setLabel(`${att.name} (${bytesToSize(att.size)})`).setURL(att.url).setStyle(ButtonStyle.Link);
                         buttons.push(audio);
                     }

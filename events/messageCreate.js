@@ -1,8 +1,10 @@
-const { Events } = require('discord.js');
+const { Events, AttachmentBuilder } = require('discord.js');
 const memberdata = require('../memberdata.json');
 const fs = require('node:fs');
 const canvafy = require("canvafy");
+const request = require(`request`);
 const { ownerID } = require('../config.json');
+const convert = require('media-converter');
 
 module.exports = {
     name: Events.MessageCreate,
@@ -50,6 +52,14 @@ module.exports = {
             });
         }
 
+        if (message.attachments.size > 0) {
+            message.attachments.forEach(async (att) => {
+                if (att.contentType === 'audio/x-wav' || att.contentType === 'audio/mpeg') {
+                    // to do
+                }
+            });
+        }
+
         if (message.author.id === ownerID) {
             if (message.content.startsWith('.eval')) {
                 const args = message.content.split(" ").slice(1);
@@ -82,4 +92,10 @@ const clean = async (client, text) => {
       .replace(/@/g, "@" + String.fromCharCode(8203));
     text = text.replaceAll(client.token, "[REDACTED]");
     return text;
+}
+
+async function download(url, filename){
+    request.get(url)
+        .on('error', console.error)
+        .pipe(fs.createWriteStream(`audioconv/${filename}`));
 }

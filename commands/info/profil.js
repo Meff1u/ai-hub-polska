@@ -21,11 +21,17 @@ module.exports = {
         if (!mmember) return await interaction.followUp(`Aby wyświetlić profil tej osoby musi ona coś napisać!`);
 
         const channel = await interaction.client.channels.fetch('1124570199018967075');
-        const threads = await channel.threads.fetch();
+        const threads = await channel.threads.fetchActive();
+        const threadsa = await channel.threads.fetchArchived();
         const postedmodels = threads.threads.filter(post => {
             if (post.ownerId === member.user.id) return true;
             return false;
         });
+        const postedmodelsa = threadsa.threads.filter(post => {
+            if (post.ownerId === member.user.id) return true;
+            return false;
+        });
+        const finalposted = postedmodels.size + postedmodelsa.size;
 
         let leaderboard = [];
         memberdata.forEach(e => {
@@ -58,7 +64,7 @@ module.exports = {
                 .setColor(member.roles.highest?.hexColor)
                 .addFields(
                     { name: 'Informacje:', value: `• ID: **${member.user.id}**\n• Utworzył(a) konto **<t:${Math.round(member.user.createdTimestamp / 1000)}:R>**\n• Dołączył(a) na serwer **<t:${Math.round(member.joinedTimestamp / 1000)}:R>**`, inline: true },
-                    { name: 'Statystyki:', value: `• Wiadomości: **${mmember.messages || '0'}**\n• Zapostowane modele: **${postedmodels.size}**`, inline: true }
+                    { name: 'Statystyki:', value: `• Wiadomości: **${mmember.messages || '0'}**\n• Zapostowane modele: **${finalposted}**`, inline: true }
                 )
                 .setImage(m.attachments.first().url);
                 await interaction.followUp({ embeds: [e] });
