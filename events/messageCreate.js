@@ -4,7 +4,6 @@ const fs = require('node:fs');
 const canvafy = require("canvafy");
 const request = require(`request`);
 const { ownerID } = require('../config.json');
-const convert = require('media-converter');
 
 module.exports = {
     name: Events.MessageCreate,
