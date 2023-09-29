@@ -2,7 +2,6 @@ const { Events, AttachmentBuilder } = require('discord.js');
 const memberdata = require('../memberdata.json');
 const fs = require('node:fs');
 const canvafy = require("canvafy");
-const request = require(`request`);
 const { ownerID } = require('../config.json');
 
 module.exports = {
@@ -91,10 +90,4 @@ const clean = async (client, text) => {
       .replace(/@/g, "@" + String.fromCharCode(8203));
     text = text.replaceAll(client.token, "[REDACTED]");
     return text;
-}
-
-async function download(url, filename){
-    request.get(url)
-        .on('error', console.error)
-        .pipe(fs.createWriteStream(`audioconv/${filename}`));
 }

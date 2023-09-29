@@ -1,6 +1,6 @@
 {
   "name": "ai-hub-polska",
-  "version": "1.0.38b",
+  "version": "1.0.39",
   "description": "Bot dla spolecznosci AI Hub Polska",
   "main": "index.js",
   "scripts": {
@@ -23,13 +23,14 @@
   "homepage": "https://github.com/Mefuuu/ai-hub-polska#readme",
   "dependencies": {
     "@devraelfreeze/discordjs-pagination": "^2.7.6",
+    "axios": "^1.5.1",
     "canvacord": "^5.4.10",
     "canvafy": "^6.0.1",
     "discord.js": "^14.11.0",
+    "imgbb-uploader": "^1.5.1",
     "ms": "^2.1.3",
     "music-dwnldr": "^1.1.0",
     "node-fetch": "^3.3.2",
-    "request": "^2.88.2",
     "spottydl": "^0.2.2",
     "yt-converter": "^1.3.4"
   }
