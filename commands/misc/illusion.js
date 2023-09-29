@@ -10,7 +10,7 @@ module.exports = {
     ephemeral: false,
     type: 'misc',
     desc: 'Tworzenie iluzji z innego zdjęcia za pomocą AI.',
-    cooldown: 5,
+    cooldown: 2,
     data: new SlashCommandBuilder()
     .setName('illusion')
     .setDescription('Tworzenie iluzji z innego zdjęcia za pomocą AI.')
