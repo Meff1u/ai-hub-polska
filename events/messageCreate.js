@@ -1,8 +1,10 @@
-const { Events, AttachmentBuilder } = require('discord.js');
+const { Events, REST } = require('discord.js');
 const memberdata = require('../memberdata.json');
 const fs = require('node:fs');
 const canvafy = require("canvafy");
-const { ownerID } = require('../config.json');
+const axios = require(`axios`);
+const FormData = require('form-data');
+const { ownerID, token } = require('../config.json');
 
 module.exports = {
     name: Events.MessageCreate,
@@ -50,13 +52,17 @@ module.exports = {
             });
         }
 
-        if (message.attachments.size > 0) {
+        /*if (message.attachments.size > 0) {
             message.attachments.forEach(async (att) => {
-                if (att.contentType === 'audio/x-wav' || att.contentType === 'audio/mpeg') {
-                    // to do
+                if (att.contentType.startsWith('audio')) {
+                    await download(att.url, att.name, './assets/a2v');
+                    await convertAudioToVideo(`./assets/a2v/${att.name}`, `./assets/a2v/${att.name.split('.')[0]}.mp4`, 'converted');
+                    await message.reply({ files: [`./assets/a2v/${att.name.split('.')[0]}.mp4`] });
+                    fs.unlinkSync(`./assets/a2v/${att.name}`);
+                    fs.unlinkSync(`./assets/a2v/${att.name.split('.')[0]}.mp4`);
                 }
             });
-        }
+        }*/
 
         if (message.author.id === ownerID) {
             if (message.content.startsWith('.eval')) {
@@ -90,4 +96,35 @@ const clean = async (client, text) => {
       .replace(/@/g, "@" + String.fromCharCode(8203));
     text = text.replaceAll(client.token, "[REDACTED]");
     return text;
+}
+
+async function download(url, filename, path){
+    const resp = await axios({
+        url,
+        method: 'GET',
+        responseType: 'stream'
+    });
+    const writer = fs.createWriteStream(`${path}/${filename}`);
+
+    resp.data.pipe(writer);
+
+    return new Promise((resolve, reject) => {
+        writer.on('finish', resolve);
+        writer.on('error', reject);
+    });
+}
+
+async function convertAudioToVideo(inputFileName, outputFileName, text) {
+    const { exec } = require('child_process');
+    const cmd = `ffmpeg -i ${inputFileName} -vf "drawtext=text='${text}':fontfile=arial.ttf:fontsize=24:box=1:boxcolor=black@0.5:boxborderw=5:x=(w-text_w)/2:y=(h-text_h)/2" -c:a aac -strict experimental ${outputFileName}`;
+  
+    return new Promise((resolve, reject) => {
+      exec(cmd, (error) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve();
+        }
+      });
+    });
 }
