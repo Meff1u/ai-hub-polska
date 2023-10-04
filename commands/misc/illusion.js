@@ -34,6 +34,7 @@ module.exports = {
             expiration: 3600
         };
         let uploaded = await upload(imbboptions);
+        console.log(uploaded);
         await fs.unlinkSync(`./assets/illusion/${image.name}`);
 
         const options = {
