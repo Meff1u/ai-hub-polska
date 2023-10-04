@@ -34,7 +34,6 @@ module.exports = {
             expiration: 3600
         };
         let uploaded = await upload(imbboptions);
-        console.log(uploaded);
         await fs.unlinkSync(`./assets/illusion/${image.name}`);
 
         const options = {
@@ -43,7 +42,7 @@ module.exports = {
                 Authorization: `Key ${falai.ID}:${falai.secret}`,
                 'Content-Type': 'application/json'
             },
-            body: `{"image_url":"${uploaded.url}","prompt":"(masterpiece:1.4), (best quality), (detailed), ${prompt}"}`
+            body: `{"image_url":"${uploaded.display_url}","prompt":"(masterpiece:1.4), (best quality), (detailed), ${prompt}"}`
         };
         const url = 'https://54285744-illusion-diffusion.gateway.alpha.fal.ai/'
 
@@ -55,7 +54,7 @@ module.exports = {
             await interaction.followUp({ embeds: [orginal, converted] });
         }
         else {
-            console.log(generatedimage.message);
+            console.log(generatedimage);
             await interaction.followUp({ content: 'Jakis error, spróbuj ponownie xd' });
         }
     }
@@ -63,7 +62,7 @@ module.exports = {
 
 async function generate(url, options) {
     try {
-        const data = await fetch(url, options).then(res => res.json());
+        const data = await fetch(url, options).then(res => res.status(400).json({ success: false, errors: errors.array() }));
         return data;
     } catch (error) {
         console.error(error);
