@@ -21,7 +21,7 @@ module.exports = {
         .setTimestamp(Date.now());
 
         const message = await interaction.guild.channels.cache.get('1124568809001459712').messages.fetch('1136054463266828408');
-        await message.edit({ embeds: [reg] });
+        await message.edit({ embeds: [reg], components: [] });
         await interaction.followUp({ content: 'Regulamin zaaktualizowany!' });
     }
 }
