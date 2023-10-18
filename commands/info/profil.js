@@ -22,12 +22,15 @@ module.exports = {
 
         const channel = await interaction.client.channels.fetch('1124570199018967075');
         const threads = await channel.threads.fetchActive();
-        const threadsa = await channel.threads.fetchArchived();
+        const archivedoptions = {
+            fetchAll: true,
+        };
+        const threadsa = await fetchAllArchivedThreads(channel, archivedoptions);
         const postedmodels = threads.threads.filter(post => {
             if (post.ownerId === member.user.id) return true;
             return false;
         });
-        const postedmodelsa = threadsa.threads.filter(post => {
+        const postedmodelsa = threadsa.filter(post => {
             if (post.ownerId === member.user.id) return true;
             return false;
         });
@@ -71,4 +74,25 @@ module.exports = {
             });
         });
     }
+}
+
+async function fetchAllArchivedThreads(channel, options) {
+    let allThreads = [];
+    let lastThread = null;
+    while (true) {
+        if (lastThread) options.before = lastThread;
+        const threads = await channel.threads.fetchArchived(options);
+        if (threads.threads.size === 0) break;
+
+        threads.threads.forEach(thread => {
+            allThreads.push(thread);
+        })
+        lastThread = threads.threads.lastKey();
+
+        if (allThreads.length >= 1000) {
+            console.log("Osiągnięto limit 1000 wątków. Przerywam pobieranie.");
+            break;
+        }
+    }
+    return allThreads;
 }

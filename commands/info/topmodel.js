@@ -16,9 +16,12 @@ module.exports = {
         let leaderboard = [];
         const channel = await interaction.client.channels.fetch('1124570199018967075');
         const threads = await channel.threads.fetchActive();
-        const threadsa = await channel.threads.fetchArchived();
+        const archivedoptions = {
+            fetchAll: true,
+        };
+        const threadsa = await fetchAllArchivedThreads(channel, archivedoptions)
         threads.threads.forEach(async (t) => {
-            if (t.id === '1124571705738809425') return;
+            if (t.id === '1124571705738809425' || t.parentId !== '1124570199018967075') return;
             let mem = interaction.guild.members.cache.get(t.ownerId);
             if (mem) {
                 let targetIndex = leaderboard.findIndex(i => i.id === t.ownerId);
@@ -30,8 +33,8 @@ module.exports = {
                 }
             }
         });
-        threadsa.threads.forEach(async (t) => {
-            if (t.id === '1124571705738809425') return;
+        threadsa.forEach(async (t) => {
+            if (t.id === '1124571705738809425' || t.parentId !== '1124570199018967075') return;
             let mem = interaction.guild.members.cache.get(t.ownerId);
             if (mem) {
                 let targetIndex = leaderboard.findIndex(i => i.id === t.ownerId);
@@ -118,4 +121,25 @@ function sliceArray(array, length) {
     }
     
     return slicedArray;
-  }
+}
+
+async function fetchAllArchivedThreads(channel, options) {
+    let allThreads = [];
+    let lastThread = null;
+    while (true) {
+        if (lastThread) options.before = lastThread;
+        const threads = await channel.threads.fetchArchived(options);
+        if (threads.threads.size === 0) break;
+
+        threads.threads.forEach(thread => {
+            allThreads.push(thread);
+        })
+        lastThread = threads.threads.lastKey();
+
+        if (allThreads.length >= 1000) {
+            console.log("Osiągnięto limit 1000 wątków. Przerywam pobieranie.");
+            break;
+        }
+    }
+    return allThreads;
+}
