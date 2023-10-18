@@ -27,14 +27,15 @@ module.exports = {
         };
         const threadsa = await fetchAllArchivedThreads(channel, archivedoptions);
         const postedmodels = threads.threads.filter(post => {
-            if (post.ownerId === member.user.id) return true;
+            if (post.ownerId === member.user.id && post.parentId === '1124570199018967075') return true;
             return false;
         });
         const postedmodelsa = threadsa.filter(post => {
-            if (post.ownerId === member.user.id) return true;
+            if (post.ownerId === member.user.id && post.parentId === '1124570199018967075') return true;
             return false;
         });
-        const finalposted = postedmodels.size + postedmodelsa.size;
+        console.log(postedmodels.size, postedmodelsa.length);
+        const finalposted = postedmodels.size + postedmodelsa.length;
 
         let leaderboard = [];
         memberdata.forEach(e => {
