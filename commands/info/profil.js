@@ -34,7 +34,6 @@ module.exports = {
             if (post.ownerId === member.user.id && post.parentId === '1124570199018967075') return true;
             return false;
         });
-        console.log(postedmodels.size, postedmodelsa.length);
         const finalposted = postedmodels.size + postedmodelsa.length;
 
         let leaderboard = [];
