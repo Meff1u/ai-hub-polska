@@ -3,7 +3,7 @@ const { Events, EmbedBuilder } = require('discord.js');
 module.exports = {
     name: Events.MessageUpdate,
     async execute(oldmes, newmes) {
-        if (newmes.guildId !== '1124566634456174605' ) return;
+        if (newmes.guildId !== '1124566634456174605' || newmes.author.bot || oldmes.content == newmes.content ) return;
         const msgchannel = await newmes.guild.channels.fetch('1162363367420342293');
         const e = new EmbedBuilder()
             .setAuthor({ name: 'Zedytowana wiadomość', iconURL: 'https://i.imgur.com/enkXCsr.png' })
