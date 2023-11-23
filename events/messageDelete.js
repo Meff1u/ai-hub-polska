@@ -3,7 +3,7 @@ const { Events, EmbedBuilder } = require('discord.js');
 module.exports = {
     name: Events.MessageDelete,
     async execute(message) {
-        if (message.guildId !== '1124566634456174605' || message.author.bot ) return;
+        if (message.guildId !== '1124566634456174605' || message.author?.bot ) return;
         const msgchannel = await message.guild.channels.fetch('1162363367420342293');
         const e = new EmbedBuilder()
             .setAuthor({ name: 'Usunięta wiadomość', iconURL: 'https://i.imgur.com/oR0AVfu.png' })
