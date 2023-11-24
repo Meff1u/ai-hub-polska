@@ -8,7 +8,7 @@ module.exports = {
         const e = new EmbedBuilder()
             .setAuthor({ name: 'Usunięta wiadomość', iconURL: 'https://i.imgur.com/oR0AVfu.png' })
             .setColor('#ff0000')
-            .setFooter({ text: message.author.username, iconURL: message.author.displayAvatarURL() })
+            .setFooter({ text: message.author?.username || null, iconURL: message.author?.displayAvatarURL() || null })
             .setTimestamp(Date.now())
             .addFields(
                 { name: 'Autor:', value: `${message.author}`, inline: true },
