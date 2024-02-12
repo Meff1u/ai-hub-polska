@@ -34,7 +34,6 @@ module.exports = {
                 })
             });
         });
-
         /*m = await client.channels.cache.get('1145622047721017354').messages.fetch('1145622463003246703');
         const e = new EmbedBuilder()
             .setTitle('Strefa Informacji - wszystko co potrzebne.')

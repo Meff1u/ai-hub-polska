@@ -60,7 +60,7 @@ module.exports = {
 
         rank.build().then(async data => {
             const att = new AttachmentBuilder(data, { name: `${member.user.username}.png`});
-            const imgch = await interaction.client.channels.fetch('1134180202050768907');
+            const imgch = await interaction.client.channels.fetch('1206676526309974026');
             imgch.send({ files: [att] }).then(async (m) => {
                 const e = new EmbedBuilder()
                 .setAuthor({ name: member.user.username, iconURL: member.user.displayAvatarURL() })

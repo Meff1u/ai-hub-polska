@@ -28,7 +28,7 @@ module.exports = {
 
         const executerplace = leaderboard.findIndex(e => e.id === member.user.id) + 1;
 
-        const imgch = await interaction.client.channels.fetch('1134180202050768907');
+        const imgch = await interaction.client.channels.fetch('1206676526309974026');
 
         const generateEmbeds = async () => {
             const embeds = [];
